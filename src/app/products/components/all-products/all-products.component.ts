@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
+import { SelectComponent } from '../../../shared/components/select/select.component';
+import { ProductComponent } from '../product/product.component';
 
 @Component({
   selector: 'app-all-products',
-  imports: [CommonModule, SpinnerComponent],
+  imports: [CommonModule, SpinnerComponent, SelectComponent, ProductComponent],
   templateUrl: './all-products.component.html',
   styleUrl: './all-products.component.scss',
 })

@@ -14,6 +14,7 @@ import { ProductComponent } from '../product/product.component';
 export class AllProductsComponent implements OnInit {
   products: any[] = [];
   categories: any[] = [];
+  cartProducts: any[] = [];
   isLoading: boolean = false;
   constructor(private _ProductsService: ProductsService) {}
   ngOnInit() {
@@ -63,5 +64,20 @@ export class AllProductsComponent implements OnInit {
       error: (error: any) =>
         alert('Error fetching products by category: ' + error.message),
     });
+  }
+  addToCart(event: any) {
+    if ('cart' in localStorage) {
+      this.cartProducts = JSON.parse(localStorage.getItem('cart') || '[]');
+      let isExist = this.cartProducts.find((item) => item.id === event.id);
+      if (isExist) {
+        alert('This product is already in the cart');
+        return;
+      }
+      this.cartProducts.push(event);
+      localStorage.setItem('cart', JSON.stringify(this.cartProducts));
+    } else {
+      this.cartProducts.push(event);
+      localStorage.setItem('cart', JSON.stringify(this.cartProducts));
+    }
   }
 }

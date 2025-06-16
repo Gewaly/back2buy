@@ -17,4 +17,7 @@ export class ProductsService {
   getProductsByCategory(category: string) {
     return this.http.get(appConfig.baseURL + 'products/category/' + category);
   }
+  getProductsById(id: any) {
+    return this.http.get(appConfig.baseURL + 'products/' + id);
+  }
 }

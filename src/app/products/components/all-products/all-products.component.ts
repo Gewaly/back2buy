@@ -4,10 +4,17 @@ import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
 import { SelectComponent } from '../../../shared/components/select/select.component';
 import { ProductComponent } from '../product/product.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-all-products',
-  imports: [CommonModule, SpinnerComponent, SelectComponent, ProductComponent],
+  imports: [
+    CommonModule,
+    SpinnerComponent,
+    SelectComponent,
+    ProductComponent,
+    RouterModule,
+  ],
   templateUrl: './all-products.component.html',
   styleUrl: './all-products.component.scss',
 })
@@ -68,7 +75,9 @@ export class AllProductsComponent implements OnInit {
   addToCart(event: any) {
     if ('cart' in localStorage) {
       this.cartProducts = JSON.parse(localStorage.getItem('cart') || '[]');
-      let isExist = this.cartProducts.find((item) => item.id === event.id);
+      let isExist = this.cartProducts.find(
+        (item) => item.item.id === event.item.id
+      );
       if (isExist) {
         alert('This product is already in the cart');
         return;
